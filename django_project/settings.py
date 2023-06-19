@@ -35,11 +35,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     "crispy_forms",
     "crispy_bootstrap5",
+    'allauth',
+    'allauth.account',
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,3 +137,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # django-crispy-forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+ACCOUNT_LOGOUT_REDIRECT = "home"
+ACCOUNT_SESSION_REMEMBER = True 
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False  
+ACCOUNT_USERNAME_REQUIRED = False  # new
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # new
+ACCOUNT_EMAIL_REQUIRED = True  # new
+ACCOUNT_UNIQUE_EMAIL = True  # new
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
